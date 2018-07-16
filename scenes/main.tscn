@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/playertrack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/hammer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/playertrack.tscn" type="PackedScene" id=3]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 
@@ -11,8 +12,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -25,10 +26,28 @@ _sections_unfolded = [ "Rect" ]
 [node name="player" parent="." index="1" instance=ExtResource( 1 )]
 
 position = Vector2( 512, 300 )
+mode = 2
+mass = 5.0
+
+[node name="joint" type="PinJoint2D" parent="player" index="2"]
+
+node_a = NodePath("..")
+node_b = NodePath("../hammer")
+bias = 0.9
+disable_collision = true
+softness = 2.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="playertrack" parent="." index="2" instance=ExtResource( 2 )]
+[node name="hammer" parent="player" index="3" instance=ExtResource( 2 )]
 
+position = Vector2( 0, 63 )
+mass = 5.0
+gravity_scale = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="playertrack" parent="." index="2" instance=ExtResource( 3 )]
+
+visible = false
 position = Vector2( 512, 300 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
