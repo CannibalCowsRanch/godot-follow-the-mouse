@@ -1,14 +1,9 @@
 extends Node2D
-
-# class member variables go here, for example:
 export var health = 100
+const MAX_VELOCITY = 2000
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _on_body_body_entered(body):
+	# XXX: Ignoring weight
+	health -= min(body.linear_velocity.length(), MAX_VELOCITY) / 3000 * 5
+	print(health)
+	
