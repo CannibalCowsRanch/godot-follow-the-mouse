@@ -14,7 +14,7 @@ extents = Vector2( 960, 100 )
 custom_solver_bias = 0.0
 extents = Vector2( 100, 740 )
 
-[node name="main" type="Node" index="0"]
+[node name="main" type="Node"]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 
@@ -62,16 +62,15 @@ visible = false
 position = Vector2( 512, 300 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Walls" type="Area2D" parent="." index="3"]
+[node name="Walls" type="StaticBody2D" parent="." index="3"]
 
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
 
 [node name="UpperWall" type="CollisionShape2D" parent="Walls" index="0"]
 
